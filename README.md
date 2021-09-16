@@ -1,10 +1,12 @@
 # React Native Projects
+
+<h3>
 <ol>
   <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/BgChanger">Background Changer App</a></li>
 </ol>
+</h3>
 
-
-#### -------------------- September 2021 -----------------------
+## ---------- September 2021 ------------
 |Sun|Mon|Tue|Wed|Thu|Fri|Sat|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |29|30|31|1|2|3|4|5|
@@ -13,6 +15,8 @@
 |19|20|21|22|23|24|25|26|
 |26|27|28|29|30|1|2|
 
-<p>Course: <a href="https://courses.learncodeonline.in/learn/Complete-React-Native-Mobile-App-developer">Complete React Native Mobile App Developer</a> by Hitesh Choudhary</p>
-<p><a href="https://web.learncodeonline.in/">@LearnCodeOnline.in</a></p>
+
+## Course Details:
+<a href="https://courses.learncodeonline.in/learn/Complete-React-Native-Mobile-App-developer" target="_blank">Complete React Native Mobile App Developer</a> by Hitesh Choudhary</p>
+<p><a href="https://web.learncodeonline.in/" target="_blank">@LearnCodeOnline.in</a></p>
 <a href="#"><img src="https://cdn.shopify.com/s/files/1/0260/1143/5093/files/Logo-lco_180x.png" alt="LCO"  style="width:42px;height:42px;border:0;"/></a>
