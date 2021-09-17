@@ -2,7 +2,8 @@
 
 <h3>
 <ol>
-  <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/BgChanger">Background Changer App</a></li>
+ <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/BgChanger">Background Changer App</a></li>
+ <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/DiceRoller">Dice Roller App</a></li>
 </ol>
 </h3>
 
@@ -11,7 +12,7 @@
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |29|30|31|1|2|3|4|5|
 |5|6|7|8|9|10|11|12|
-|12|13|14|<ul><li>- [x] 15</li></ul>|<ul><li>- [x] 16</li></ul>|17|18|
+|12|13|14|<ul><li>- [x] 15</li></ul>|<ul><li>- [x] 16</li></ul>|<ul><li>- [x] 17</li></ul>|18|
 |19|20|21|22|23|24|25|26|
 |26|27|28|29|30|1|2|
 

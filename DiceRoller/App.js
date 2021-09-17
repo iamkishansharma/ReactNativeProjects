@@ -51,10 +51,11 @@ const App = () => {
   return (
     <>
       <StatusBar backgroundColor="#E6425E" />
+      <Text style={styles.title}>Click on dice to roll</Text>
       <View style={styles.container}>
-        <Image source={diceFace} style={styles.image} />
         <TouchableOpacity onPress={RollHandler}>
-          <Text style={styles.buttonRoll}>Roll</Text>
+          {/* <Text style={styles.buttonRoll}>Roll</Text> */}
+          <Image source={diceFace} style={styles.image} />
         </TouchableOpacity>
       </View>
     </>
@@ -71,23 +72,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: '#000',
   },
+  title: {
+    textAlign: 'center',
+    backgroundColor: '#E6425E',
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: 'white',
+    padding: 10,
+  },
   image: {
     width: 250,
     height: 250,
   },
-  buttonRoll: {
-    backgroundColor: '#00D84A',
-    alignSelf: 'flex-end',
-    borderColor: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    borderRadius: 8,
-    color: 'white',
-    marginRight: 2,
-    marginTop: 120,
-    borderWidth: 2,
-    fontSize: 20,
-    padding: 10,
-    width: 150,
-  },
+  // buttonRoll: {
+  //   backgroundColor: '#00D84A',
+  //   alignSelf: 'flex-end',
+  //   borderColor: 'white',
+  //   textAlign: 'center',
+  //   fontWeight: 'bold',
+  //   borderRadius: 8,
+  //   color: 'white',
+  //   marginRight: 2,
+  //   marginTop: 120,
+  //   borderWidth: 2,
+  //   fontSize: 20,
+  //   padding: 10,
+  //   width: 150,
+  // },
 });
