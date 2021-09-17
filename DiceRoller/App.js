@@ -15,47 +15,76 @@ import DiceFive from './assets/dice5.png';
 import DiceSix from './assets/dice6.png';
 
 const App = () => {
-  const [diceFace, setImage] = useState(DiceOne);
+  const [diceFace1, setImage1] = useState(DiceOne);
+  const [diceFace2, setImage2] = useState(DiceOne);
 
   // Handling the click on "Roll" button
   const RollHandler = () => {
-    let diceFace;
-    // Generating random no from 1 to 6
+    let diceFace1, diceFace2;
+    // Generating random no from 1 to 6 for 1st dice
+    let one = Math.floor(Math.random() * 6) + 1;
     // Checking and setting the image file
-    switch (Math.floor(Math.random() * 6) + 1) {
+    switch (one) {
       case 1:
-        diceFace = DiceOne;
+        diceFace1 = DiceOne;
         break;
       case 2:
-        diceFace = DiceTwo;
+        diceFace1 = DiceTwo;
         break;
       case 3:
-        diceFace = DiceThree;
+        diceFace1 = DiceThree;
         break;
       case 4:
-        diceFace = DiceFour;
+        diceFace1 = DiceFour;
         break;
       case 5:
-        diceFace = DiceFive;
+        diceFace1 = DiceFive;
         break;
       case 6:
-        diceFace = DiceSix;
+        diceFace1 = DiceSix;
         break;
       default:
         alert('Error in switch case');
         break;
     }
-    console.log(diceFace);
-    setImage(diceFace);
+    setImage1(diceFace1);
+    // Generating random no from 1 to 6 for 2nd dice
+    let two = Math.floor(Math.random() * 6) + 1;
+    // Checking and setting the image file
+    switch (two) {
+      case 1:
+        diceFace2 = DiceOne;
+        break;
+      case 2:
+        diceFace2 = DiceTwo;
+        break;
+      case 3:
+        diceFace2 = DiceThree;
+        break;
+      case 4:
+        diceFace2 = DiceFour;
+        break;
+      case 5:
+        diceFace2 = DiceFive;
+        break;
+      case 6:
+        diceFace2 = DiceSix;
+        break;
+      default:
+        alert('Error in switch case');
+        break;
+    }
+    setImage2(diceFace2);
   };
   return (
     <>
       <StatusBar backgroundColor="#E6425E" />
-      <Text style={styles.title}>Click on dice to roll</Text>
+      {/* <Text style={styles.title}>Click on dice to roll</Text> */}
       <View style={styles.container}>
+        <Image source={diceFace1} style={styles.image} />
+        <Image source={diceFace2} style={styles.image} />
         <TouchableOpacity onPress={RollHandler}>
-          {/* <Text style={styles.buttonRoll}>Roll</Text> */}
-          <Image source={diceFace} style={styles.image} />
+          <Text style={styles.buttonRoll}>Roll</Text>
         </TouchableOpacity>
       </View>
     </>
@@ -72,31 +101,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: '#000',
   },
-  title: {
-    textAlign: 'center',
-    backgroundColor: '#E6425E',
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: 'white',
-    padding: 10,
-  },
-  image: {
-    width: 250,
-    height: 250,
-  },
-  // buttonRoll: {
-  //   backgroundColor: '#00D84A',
-  //   alignSelf: 'flex-end',
-  //   borderColor: 'white',
+  // title: {
   //   textAlign: 'center',
+  //   backgroundColor: '#E6425E',
+  //   fontSize: 30,
   //   fontWeight: 'bold',
-  //   borderRadius: 8,
   //   color: 'white',
-  //   marginRight: 2,
-  //   marginTop: 120,
-  //   borderWidth: 2,
-  //   fontSize: 20,
   //   padding: 10,
-  //   width: 150,
   // },
+  image: {
+    width: 200,
+    height: 200,
+    margin: 10,
+  },
+  buttonRoll: {
+    backgroundColor: '#00D84A',
+    alignSelf: 'flex-end',
+    borderColor: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    borderRadius: 8,
+    color: 'white',
+    marginRight: 2,
+    marginTop: 120,
+    borderWidth: 2,
+    fontSize: 20,
+    padding: 10,
+    width: 150,
+  },
 });
