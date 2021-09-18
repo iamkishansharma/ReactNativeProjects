@@ -83,7 +83,7 @@ const App = () => {
       <View style={styles.container}>
         <Image source={diceFace1} style={styles.image} />
         <Image source={diceFace2} style={styles.image} />
-        <TouchableOpacity onPress={RollHandler}>
+        <TouchableOpacity onPress={RollHandler} style={{marginTop: 120}}>
           <Text style={styles.buttonRoll}>Roll</Text>
         </TouchableOpacity>
       </View>
@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     color: 'white',
     marginRight: 2,
-    marginTop: 120,
     borderWidth: 2,
     fontSize: 20,
     padding: 10,
