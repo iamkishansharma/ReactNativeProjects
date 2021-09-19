@@ -42,7 +42,10 @@ const App = () => {
   return (
     <>
       <StatusBar backgroundColor="#383CC1" />
-      <ScrollView style={{backgroundColor: '#383CC1'}}>
+      <ScrollView
+        style={{backgroundColor: '#383CC1'}}
+        keyboardShouldPersistTaps="handled"
+        contentInsetAdjustmentBehavior="automatic">
         <SafeAreaView style={styles.container}>
           <TouchableOpacity
             onPress={() =>
