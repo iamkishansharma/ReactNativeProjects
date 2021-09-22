@@ -7,6 +7,7 @@
  <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/SpanishNumber">Spanish Number Sound App</a></li>
  <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/CurrencyApp">Currency Converter App</a></li>
  <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/CameraApp">Camera App</a></li>
+ <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/TicTacToe">TicTacToe Game</a></li>
 </ol>
 </h3>
 
@@ -16,7 +17,7 @@
 |29|30|31|1|2|3|4|5|
 |5|6|7|8|9|10|11|12|
 |12|13|14|<ul><li>- [x] 15</li></ul>|<ul><li>- [x] 16</li></ul>|<ul><li>- [x] 17</li></ul>|<ul><li>- [x] 18</li></ul>|
-|<ul><li>- [x] 19</li></ul>|<ul><li>- [x] 20</li></ul>|21|22|23|24|25|26|
+|<ul><li>- [x] 19</li></ul>|<ul><li>- [x] 20</li></ul>|<ul><li>- [x] 21</li></ul>|22|23|24|25|26|
 |26|27|28|29|30|1|2|
 
 

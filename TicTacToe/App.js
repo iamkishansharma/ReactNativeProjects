@@ -63,49 +63,49 @@ const App = () => {
       itemArray[1] === itemArray[2] &&
       itemArray[0] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[0]} won!`); // for 123
+      setWinMessage(`✨${itemArray[0]} won! 🎉`); // for 123
     } else if (
       itemArray[3] === itemArray[4] &&
       itemArray[4] === itemArray[5] &&
       itemArray[3] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[3]} won!`); // for 456
+      setWinMessage(`✨${itemArray[3]} won! 🎉`); // for 456
     } else if (
       itemArray[6] === itemArray[7] &&
       itemArray[7] === itemArray[8] &&
       itemArray[6] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[6]} won!`); // for 789
+      setWinMessage(`✨${itemArray[6]} won! 🎉`); // for 789
     } else if (
       itemArray[0] === itemArray[3] &&
       itemArray[3] === itemArray[6] &&
       itemArray[0] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[0]} won!`); // for 147
+      setWinMessage(`✨${itemArray[0]} won! 🎉`); // for 147
     } else if (
       itemArray[1] === itemArray[4] &&
       itemArray[4] === itemArray[7] &&
       itemArray[1] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[1]} won!`); // for 258
+      setWinMessage(`✨${itemArray[1]} won! 🎉`); // for 258
     } else if (
       itemArray[2] === itemArray[5] &&
       itemArray[5] === itemArray[8] &&
       itemArray[2] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[2]} won!`); // for 369
+      setWinMessage(`✨${itemArray[2]} won! 🎉`); // for 369
     } else if (
       itemArray[0] === itemArray[4] &&
       itemArray[4] === itemArray[8] &&
       itemArray[0] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[0]} won!`); // for 159
+      setWinMessage(`✨${itemArray[0]} won! 🎉`); // for 159
     } else if (
       itemArray[2] === itemArray[4] &&
       itemArray[4] === itemArray[6] &&
       itemArray[2] !== 'empty'
     ) {
-      setWinMessage(`${itemArray[2]} won!`); // for 357
+      setWinMessage(`✨${itemArray[2]} won!`); // for 357
     }
     if (
       itemArray[0] !== 'empty' &&
@@ -118,7 +118,7 @@ const App = () => {
       itemArray[7] !== 'empty' &&
       itemArray[8] !== 'empty'
     ) {
-      setWinMessage('DRAW! :(');
+      setWinMessage('DRAW! 🙄');
     }
   };
 
@@ -161,7 +161,8 @@ const App = () => {
               </View>
             </View>
           ) : (
-            <H3 style={styles.messages}>Turn:
+            <H3 style={styles.messages}>
+              Turn:
               {isCross ? 'Cross' : 'Circle'}
             </H3>
           )}
@@ -213,13 +214,13 @@ const styles = StyleSheet.create({
   },
   messages: {
     textAlign: 'center',
-    justifyContent: 'center',
     color: 'red',
-    backgroundColor: 'yellow',
+    backgroundColor: '#51E1ED',
     fontWeight: 'bold',
     fontSize: 50,
+    textTransform: 'capitalize',
     margin: 10,
-    paddingVertical: 60,
+    paddingVertical: 70,
     borderRadius: 8,
     marginVertical: 20,
   },
