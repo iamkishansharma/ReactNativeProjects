@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, StyleSheet, StatusBar} from 'react-native';
 
 // important imports for navigation
 import 'react-native-gesture-handler';
@@ -20,10 +19,13 @@ const App = () => {
           name="Home"
           component={Home}
           options={{
-            headerStyle: {backgroundColor: '#d500f9'},
+            headerStyle: {backgroundColor: '#363636'},
             title: 'NetFlix Note',
-            headerTitleStyle: {textAlign: 'center', color: '#0b7c2'},
-            // headerTitleStyle: {textAlign: 'center', color: '#0b7c2'},
+            headerTitleStyle: {
+              fontSize: 20,
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
           }}
         />
 
@@ -31,9 +33,13 @@ const App = () => {
           name="Add"
           component={Add}
           options={{
-            headerStyle: {backgroundColor: '#0f4c75'},
-            title: 'NetFlix Note',
-            headerTitleStyle: {textAlign: 'center', color: '#0b7c2'},
+            headerStyle: {backgroundColor: '#363636'},
+            title: 'Add Note',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff',
           }}
         />
 
@@ -41,9 +47,13 @@ const App = () => {
           name="Edit"
           component={Edit}
           options={{
-            headerStyle: {backgroundColor: '#0f4c75'},
-            title: 'NetFlix Note',
-            headerTitleStyle: {textAlign: 'center', color: '#0b7c2'},
+            headerStyle: {backgroundColor: '#363636'},
+            title: 'Edit Note',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff',
           }}
         />
       </Stack.Navigator>

@@ -13,6 +13,8 @@
 - [x] npm i react-native-safe-area-context
 - [x] npm i react-native-screens
 - [x] npm i shortid
+- [x] npm i react-native-snackbar
+- [x] npm i --save react-native-touchable-scale
 
 ### Configuration:
 
