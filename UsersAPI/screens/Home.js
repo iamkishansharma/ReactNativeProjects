@@ -34,9 +34,8 @@ const Home = ({navigation, route}) => {
     try {
       const response = await Axios.get(URL);
       const data = response.data;
-      // data.map(user => {
-      //   console.log(user.name);
-      // });
+
+      // Setting the response data to list
       setUserList(data);
     } catch (err) {
       console.log(err);
