@@ -14,6 +14,7 @@
 - [x] npm i @react-native-community/datetimepicker
 - [x] npm i randomcolor
 - [x] npm i react-native-vector-icons
+- [x] npm i react-native-cards-swipe
 
 ## Api used:
 

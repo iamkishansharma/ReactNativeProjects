@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {
   Text,
@@ -6,41 +7,49 @@ import {
   ScrollView,
   TextInput,
   Image,
+  TouchableOpacity,
 } from 'react-native';
-import {Button} from 'react-native-elements';
-import Snackbar from 'react-native-snackbar';
+import Constants from '../Constants';
+import randomColor from 'randomcolor';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+let COLOR = randomColor({luminosity: 'light', hue: 'purple'});
 const Edit = ({navigation, route}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
   const [image, setImage] = useState('');
   const [color, setColor] = useState('');
+  const [id, setId] = useState();
 
   const updateDetails = async () => {
-    //kl   😏😥🚩
+    if (!name.trim() || !email.trim() || !dob.trim()) {
+      return Constants.SnackbarNotify('warning', null);
+    }
+
     try {
-      if (!name.trim() || !email.trim() || !dob.trim()) {
-        return Snackbar.show({
-          duration: Snackbar.LENGTH_SHORT,
-          text: ' Sorry! All fields are required. 🚨',
-          backgroundColor: 'pinnk',
-          textColor: 'red',
-        });
-      }
-
-      const userToUpdate = {
-        name: name,
-        email: email,
-        dob: dob,
-        image: image,
-      };
-
       // Saving the values
-
-      //All data saved ============== TODO
+      //All data saved
+      await Axios.put(
+        `${Constants.BASE_URL}/update/${id}/${Constants.API_KEY}`,
+        null,
+        {
+          headers: {
+            'Content-Type': 'text/plain;',
+          },
+          params: {
+            name: name,
+            email: email,
+            dob: dob,
+            image: image,
+          },
+        },
+      )
+        .then(response => {
+          Constants.SnackbarNotify('success', null);
+        })
+        .catch(error => {
+          Constants.SnackbarNotify('failed', error);
+        });
       console.log('Data updated. Navigating to Home....');
 
       // GOTO Home Screen
@@ -55,6 +64,7 @@ const Edit = ({navigation, route}) => {
     const {id, name, email, dob, image} = user;
     setColor(color);
 
+    setId(id);
     setName(name);
     setEmail(email);
     setDob(dob);
@@ -62,68 +72,68 @@ const Edit = ({navigation, route}) => {
   }, []);
 
   return (
-    <>
-      <View style={(styles.container , {backgroundColor: color})}>
-        <ScrollView
-          contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10}}>
-          <Text style={styles.heading}>
-            Edit:{'\n'}
-            {name}
-          </Text>
-          <TextInput
-            style={styles.input}
-            value={name}
-            onChangeText={text => {
-              setName(text);
-            }}
-            placeholder="John Cena"
-            keyboardType="default"
-          />
-          <TextInput
-            style={styles.input}
-            value={email}
-            onChangeText={text => {
-              setEmail(text);
-            }}
-            placeholder="john@cena.com"
-            keyboardType="email-address"
-          />
-          <TextInput
-            style={styles.input}
-            value={dob}
-            onChangeText={text => {
-              setDob(text);
-            }}
-            placeholder="09/24/2021"
-            keyboardType="numbers-and-punctuation"
-          />
-          <TextInput
-            style={styles.input}
-            value={image}
-            onChangeText={text => {
-              setImage(text);
-            }}
-            placeholder="https://ecample.com/image.jpg"
-            keyboardType="url"
-          />
-          <Button
-            icon={
-              <Icon
-                style={{marginRight: 5}}
-                name="check"
-                size={25}
-                color="pink"
-              />
-            }
-            title="Save"
-            onPress={updateDetails}
-            titleStyle={{color: 'pink', fontSize: 20}}
-            buttonStyle={styles.buttonSave}
-          />
-          <Image source={require('../assets/doge.png')} />
-        </ScrollView>
-      </View>
-    </>
+    <View style={(styles.container, {backgroundColor: 'white',flex:1})}>
+      <ScrollView contentContainerStyle={{flexGrow: 1, paddingHorizontal: 10}}>
+        <Text style={styles.heading}>
+          Edit:{'\n'}
+          {name}
+        </Text>
+        <TextInput
+          style={styles.input}
+          value={name}
+          onChangeText={text => {
+            setName(text);
+          }}
+          placeholder="John Cena"
+          keyboardType="default"
+        />
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={text => {
+            setEmail(text);
+          }}
+          placeholder="john@cena.com"
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={styles.input}
+          value={dob}
+          onChangeText={text => {
+            setDob(text);
+          }}
+          placeholder="09/24/2021"
+          keyboardType="numbers-and-punctuation"
+        />
+        <TextInput
+          style={styles.input}
+          value={image}
+          onChangeText={text => {
+            setImage(text);
+          }}
+          placeholder="https://ecample.com/image.jpg"
+          keyboardType="url"
+        />
+        <TouchableOpacity
+          onPress={updateDetails}
+          style={{
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}>
+          <View style={styles.buttonSave}>
+            {/* <Icon
+              style={{marginRight: 5}}
+              name="check"
+              size={30}
+              color="blue"
+            /> */}
+            <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
+              Save
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
   );
 };
 export default Edit;
@@ -135,7 +145,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
     fontSize: 50,
     fontWeight: 'bold',
     marginTop: 20,
@@ -145,20 +155,23 @@ const styles = StyleSheet.create({
   input: {
     flexWrap: 'wrap',
     marginBottom: 20,
-    borderWidth: 1,
+    borderWidth: 0.9,
     padding: 15,
     borderRadius: 10,
     borderColor: 'pink',
-    backgroundColor: '#212121',
+    backgroundColor: '#ff9999',
     fontWeight: '400',
     fontSize: 18,
+    elevation: 10,
   },
   buttonSave: {
-    backgroundColor: '#3d3d3d',
+    backgroundColor: COLOR,
     borderRadius: 10,
-    borderColor: 'pink',
-    borderWidth: 0,
-    padding: 15,
-    alignSelf: 'stretch',
+    flexDirection: 'row',
+    paddingVertical: 15,
+    elevation: 10,
+    marginTop: 50,
+    alignContent: 'center',
+    justifyContent: 'center',
   },
 });

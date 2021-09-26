@@ -14,10 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 // for Navigation
 import {useIsFocused} from '@react-navigation/native';
 import {Avatar, FAB, LinearProgress} from 'react-native-elements';
-// API url
-const URL = 'https://kishanapi.herokuapp.com/api/v1/students';
-// API key
-const KEY = 'kishanra';
+import Constants from '../Constants';
 
 // For generating random COLORS
 const randomColor = require('randomcolor');
@@ -32,7 +29,8 @@ const Home = ({navigation, route}) => {
     setLoading(true);
     // Connecting and fetching the data from RESTful API
     try {
-      const response = await Axios.get(URL);
+      const response = await Axios.get(Constants.BASE_URL);
+      // all details copied
       const data = response.data;
 
       // Setting the response data to list
@@ -56,19 +54,24 @@ const Home = ({navigation, route}) => {
       },
     ]);
   };
-  // Deleting the series with id
+  // Deleting user with id
   const deleteUser = async id => {
+    // deleting item from UserList (Loaded Data)
     const idRemovedList = userList.filter(list => list.id !== id);
 
-    // updating it into API =============
-
+    // updating it into API
+    await Axios.delete(
+      `${Constants.BASE_URL}/delete/${id}/${Constants.API_KEY}`,
+      {
+        id,
+      },
+    );
     // updating the screen
     setUserList(idRemovedList);
   };
   // ===== Deleting Feature ===== END
 
-  /////////////// UI ///////////////
-
+  // ====== List Items UI ======= START
   const renderItem = ({item}) => (
     <ListItem
       user={item}
@@ -83,7 +86,7 @@ const Home = ({navigation, route}) => {
       style={{
         flex: 1,
         borderRadius: 10,
-        marginTop: 15,
+        marginBottom: 15,
         // backgroundColor: '#4d4d4d',
         backgroundColor: color,
         elevation: 8,
@@ -101,7 +104,7 @@ const Home = ({navigation, route}) => {
             justifyContent: 'center',
           }}
           onPress={() => {
-            // Sending User detail & Color
+            // CLICKING ON A
             // navigation.navigate('Edit', {user, color});
           }}>
           <Avatar
@@ -118,7 +121,7 @@ const Home = ({navigation, route}) => {
         <TouchableOpacity
           onLongPress={() => {
             //TODO::Do Nothing
-            navigation.navigate('Edit', {user,color});
+            navigation.navigate('Edit', {user, color});
           }}
           style={{
             justifyContent: 'center',
@@ -146,7 +149,9 @@ const Home = ({navigation, route}) => {
       </View>
     </View>
   );
-  // loading while app loads up
+  // ====== List Items UI ======= END
+
+  // Re loading every time user sees a screen
   useEffect(() => {
     fetchDetails();
   }, [isFocused]);
@@ -177,15 +182,12 @@ const Home = ({navigation, route}) => {
         </View>
       )}
       <FAB
+      title="Create"
+      titleStyle={{color:'black'}}
         onPress={() => {
-          navigation.navigate('Add', {
-            color: randomColor({
-              luminosity: 'dark',
-              hue: 'blue',
-            }),
-          });
+          navigation.navigate('Add');
         }}
-        size="large"
+        size="small"
         placement="right"
         icon={{name: 'add', color: 'black'}}
         color="#ff9999"
