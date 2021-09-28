@@ -36,7 +36,7 @@ const App = () => {
           component={Details}
           options={{
             headerStyle: {backgroundColor: '#ff9999'},
-            title: 'Add User - POST',
+            title: 'Profile',
             headerTitleStyle: {
               fontWeight: 'bold',
             },
