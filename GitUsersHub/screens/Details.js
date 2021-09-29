@@ -4,24 +4,14 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  Image,
   Animated,
   TouchableOpacity,
-  FlatList,
 } from 'react-native';
-import Clipboard from '@react-native-community/clipboard';
 import Axios from 'axios';
-import Snackbar from 'react-native-snackbar';
 import {Avatar, LinearProgress} from 'react-native-elements';
 import randomColor from 'randomcolor';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-const URL = 'https://api.github.com/users';
-const TEXT_COLOR = 'black';
-const BG_COLOR = randomColor({
-  luminosity: 'light',
-  hue: 'blue',
-});
-const ITEM_SIZE = 150;
+import {URL, ITEM_SIZE, TEXT_COLOR, ListItem, BG_COLOR} from '../Constants';
+
 const Details = ({navigation, route}) => {
   const [receivedUser, setReceivedUser] = useState('');
   const [loading, setLoading] = useState(false);
@@ -46,14 +36,18 @@ const Details = ({navigation, route}) => {
       type: '',
       created_at: '',
       actor: {avatar_url: 'https://google.com/logo.png', display_login: ''},
-      repo: {name: '', public: false},
+      repo: {name: '', public: false, url: ''},
       payload: {
         ref: '',
         description: '',
         head: '',
         commits: [
-          {author: {name: '', message: ''}, sha: ''},
-          {author: {name: '', message: ''}, sha: ''},
+          {author: {name: '', message: ''}, sha: '', url: ''},
+          {
+            author: {name: '', message: ''},
+            sha: '',
+            url: '',
+          },
         ],
       },
     },
@@ -70,7 +64,7 @@ const Details = ({navigation, route}) => {
     setLoading(true);
     // Connecting and fetching the data from RESTful API
     try {
-      await Axios.get(`${URL}/${receivedUser}`)
+      await Axios.get(`${URL}/${username}`)
         .then(response => {
           // users' all details copied
           console.log('Details fetched Success ====>' + response.status);
@@ -185,81 +179,6 @@ const Details = ({navigation, route}) => {
       />
     );
   };
-  const ListItem = ({scale, user, color}) => (
-    <Animated.View
-      style={{
-        transform: [{scale}],
-        flex: 1,
-        marginHorizontal: 20,
-        borderRadius: 10,
-        marginBottom: 10,
-        backgroundColor: color,
-        elevation: 5,
-      }}>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          padding: 16,
-        }}>
-        <TouchableOpacity
-          style={{
-            padding: 0,
-            marginEnd: 5,
-            justifyContent: 'center',
-          }}
-          onPress={() => {
-            // CLICKING ON USER PROFILE pic
-          }}>
-          <Avatar
-            rounded
-            title="KS"
-            size={100}
-            source={{uri: user.actor.avatar_url}}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => {
-            ////// ON CLICK
-          }}
-          style={{
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            flex: 1,
-            alignContent: 'stretch',
-          }}>
-          <Text>
-            Date: {user.created_at.replace('Z', ' ').replace('T', '  Time:')}
-          </Text>
-          <Text>Action: {user.type}</Text>
-          <Text>
-            SHA :
-            {user.payload.ref !== null && user.payload.ref !== 'main'
-              ? user.payload.commits.map(a => a.sha.substring(0, 7))
-              : user.payload.description}
-          </Text>
-          <Text>User: @{user.actor.display_login}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            padding: 0,
-            marginStart: 5,
-            justifyContent: 'center',
-          }}
-          onPress={() => {
-            Snackbar.show({
-              text: 'Copied to clipboard',
-              duration: Snackbar.LENGTH_SHORT,
-            });
-            Clipboard.setString(user.payload.commits[0].sha);
-          }}>
-          <Icon name="clipboard" color="gray" size={30} />
-        </TouchableOpacity>
-        {/*Put New elements*/}
-      </View>
-    </Animated.View>
-  );
 
   if (loading) {
     return (
@@ -282,7 +201,7 @@ const Details = ({navigation, route}) => {
             style={{
               backgroundColor: 'pink',
               flex: 0,
-              marginTop: 30,
+              marginTop: 25,
               marginHorizontal: 15,
               elevation: 10,
               borderRadius: 10,
@@ -356,6 +275,7 @@ const Details = ({navigation, route}) => {
                     marginHorizontal: 20,
                     marginVertical: 15,
                     fontWeight: 'bold',
+                    color: TEXT_COLOR,
                   }}>
                   Latest Activities:
                 </Text>
@@ -389,7 +309,7 @@ const styles = StyleSheet.create({
 
   heading: {
     textAlign: 'center',
-    color: 'red',
+    color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
     marginTop: 20,

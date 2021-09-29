@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -7,8 +7,12 @@ import {
   TextInput,
   StyleSheet,
   View,
-  Pressable,
 } from 'react-native';
+import randomColor from 'randomcolor';
+const BG_COLOR = randomColor({
+  luminosity: 'light',
+  hue: 'blue',
+});
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const Home = ({navigation, route}) => {
@@ -63,7 +67,7 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor: BG_COLOR,
     flex: 1,
     // justifyContent:'space-around'
   },
