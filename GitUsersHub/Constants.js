@@ -76,9 +76,9 @@ export const ListItem = ({scale, user, color}) => (
         <Text style={{color: LIST_TEXT_COLOR}}>Action: {user.type}</Text>
         <Text style={{color: LIST_TEXT_COLOR}}>
           SHA :
-          {user.payload.ref !== null &&
+          {user.payload.ref !== null ||
           user.payload.commits !== null &&
-          user.payload.commits.length !== 0 &&
+          user.payload.commits.length !== 0 ||
           user.payload.ref !== 'main'
             ? user.payload.commits.map(a => a.sha.substring(0, 7))
             : user.payload.description}

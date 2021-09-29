@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Axios from 'axios';
-import {Avatar, LinearProgress} from 'react-native-elements';
+import {Avatar, Icon, LinearProgress} from 'react-native-elements';
 import randomColor from 'randomcolor';
 import {URL, ITEM_SIZE, TEXT_COLOR, ListItem, BG_COLOR} from '../Constants';
 
@@ -19,6 +19,7 @@ const Details = ({navigation, route}) => {
   const [following, setFollowing] = useState(0);
   const [stars, setStars] = useState(0);
   const [repos, setRepos] = useState(0);
+  const [showError, setShowError] = useState(true);
 
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
@@ -34,20 +35,17 @@ const Details = ({navigation, route}) => {
     {
       id: '',
       type: '',
+      public: false,
       created_at: '',
       actor: {avatar_url: 'https://google.com/logo.png', display_login: ''},
-      repo: {name: '', public: false, url: ''},
+      repo: {name: '', url: ''},
       payload: {
         ref: '',
         description: '',
         head: '',
         commits: [
           {author: {name: '', message: ''}, sha: '', url: ''},
-          {
-            author: {name: '', message: ''},
-            sha: '',
-            url: '',
-          },
+          {author: {name: '', message: ''}, sha: '', url: ''},
         ],
       },
     },
@@ -111,7 +109,10 @@ const Details = ({navigation, route}) => {
       await Axios.get(`${URL}/${username}/events`)
         .then(response => {
           // users' all details copied
-          console.log(' Response ==<<<<' + response.status);
+          setShowError(false);
+          if (response.data == '') {
+            setShowError(true);
+          }
           // setting the received data to local object
           setActivityData(response.data);
         })
@@ -191,7 +192,7 @@ const Details = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      {data.login == 'a' && data.avatar_url == 'a' ? (
+      {data == null && data.login == '' && data.avatar_url == '' ? (
         <View style={styles.emptyContainer}>
           <Text style={styles.heading}>No details found</Text>
         </View>
@@ -259,26 +260,40 @@ const Details = ({navigation, route}) => {
               />
             </View>
           </View>
+          <Text
+            style={{
+              marginHorizontal: 20,
+              marginVertical: 15,
+              fontWeight: 'bold',
+              color: TEXT_COLOR,
+            }}>
+            Latest Activities:
+          </Text>
 
           <View
             style={{
-              backgroundColor: BG_COLOR,
+              backgroundColor: 'transparent',
+              flex: 1,
               alignItems: 'center',
               flexDirection: 'row',
             }}>
-            {activityData == null || activityData.length == 0 ? (
-              <Text style={styles.heading}>No activty</Text>
+            {showError ? (
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: 'yellow',
+                  marginHorizontal: 20,
+                  elevation: 10,
+                  padding: 20,
+                  borderRadius: 10,
+                }}>
+                <Icon name="warning" color="red" size={100} />
+                <Text style={[styles.heading, {color: 'red'}]}>
+                  Activities not found
+                </Text>
+              </View>
             ) : (
               <View style={{flex: 1}}>
-                <Text
-                  style={{
-                    marginHorizontal: 20,
-                    marginVertical: 15,
-                    fontWeight: 'bold',
-                    color: TEXT_COLOR,
-                  }}>
-                  Latest Activities:
-                </Text>
                 <Animated.FlatList
                   onScroll={Animated.event(
                     [{nativeEvent: {contentOffset: {y: scrollY}}}],
@@ -310,6 +325,7 @@ const styles = StyleSheet.create({
   heading: {
     textAlign: 'center',
     color: 'white',
+    alignSelf: 'center',
     fontSize: 30,
     fontWeight: 'bold',
     marginTop: 20,
