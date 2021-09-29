@@ -21,7 +21,7 @@
 |5|6|7|8|9|10|11|12|
 |12|13|14|<ul><li>- [x] 15</li></ul>|<ul><li>- [x] 16</li></ul>|<ul><li>- [x] 17</li></ul>|<ul><li>- [x] 18</li></ul>|
 |<ul><li>- [x] 19</li></ul>|<ul><li>- [x] 20</li></ul>|<ul><li>- [x] 21</li></ul>|<ul><li>- [x] 22</li></ul>|<ul><li>- [x] 23</li></ul>|<ul><li>- [x] 24</li></ul>|<ul><li>- [x] 25</li></ul>|
-|<ul><li>- [x] 26</li></ul>|<ul><li>- [x] 27</li></ul>|<ul><li>- [x] 28</li></ul>|29|30|1|2|
+|<ul><li>- [x] 26</li></ul>|<ul><li>- [x] 27</li></ul>|<ul><li>- [x] 28</li></ul>|<ul><li>- [x] 29</li></ul>|30|1|2|
 
 
 ## Course Details:
