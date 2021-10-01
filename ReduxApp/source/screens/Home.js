@@ -14,7 +14,7 @@ import {CheckBox} from 'react-native-elements/dist/checkbox/CheckBox';
 
 // For Redux
 import propTypes from 'prop-types';
-import {deleteNote, markCompleted} from '../action/list';
+import {addNote, deleteNote, markCompleted} from '../action/list';
 import {connect} from 'react-redux';
 
 // CONSTANTS
@@ -22,9 +22,6 @@ import {BG_COLOR, TEXT_COLOR, ICON_COLOR, SNACKBAR} from '../../Constants';
 import randomColor from 'randomcolor';
 
 const Home = ({navigation, markCompleted, deleteNote, listState}) => {
-  const [loading, setLoading] = useState(false);
-  // Reloading screen every times user sees
-
   const renderItem = ({item}) => <ListItem note={item} />;
   const ListItem = ({note}) => (
     <View
@@ -56,7 +53,7 @@ const Home = ({navigation, markCompleted, deleteNote, listState}) => {
           }}
           onPress={() => {
             deleteNote(note.id);
-            SNACKBAR(note.name +' deleted successfully.')
+            SNACKBAR(note.name + ' deleted successfully.');
           }}>
           <Icon name="trash" color={ICON_COLOR} size={30} />
         </TouchableOpacity>
@@ -98,16 +95,6 @@ const Home = ({navigation, markCompleted, deleteNote, listState}) => {
       </View>
     </View>
   );
-
-  if (loading) {
-    return (
-      <View style={styles.emptyContainer}>
-        <Text style={styles.heading}>Loading...</Text>
-        <LinearProgress color="white" style={{fontSize: 20}} />
-      </View>
-    );
-  }
-
   return (
     <>
       {listState.length == 0 ? (

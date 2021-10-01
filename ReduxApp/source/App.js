@@ -1,4 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {FAB, LinearProgress} from 'react-native-elements';
+
 import {Text, StyleSheet, View, StatusBar} from 'react-native';
 import {createStore, applyMiddleware} from 'redux';
 
@@ -21,12 +23,13 @@ const Stack = createNativeStackNavigator();
 import {
   STATUSBAR_COLOR,
   HEADER_BG_COLOR,
+  BG_COLOR,
   HEADER_TITLE_COLOR,
 } from '../Constants';
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate persistor={persistor} loading={null}>
         <StatusBar backgroundColor={STATUSBAR_COLOR} barStyle="dark-content" />
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">
@@ -57,20 +60,6 @@ const App = () => {
                 headerTintColor: HEADER_TITLE_COLOR,
               }}
             />
-            {/* 
-        <Stack.Screen
-          name="Edit"
-          component={Edit}
-          options={{
-            headerStyle: {backgroundColor: '#363636'},
-            title: 'Edit Note',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerTitleAlign: 'center',
-            headerTintColor: '#fff',
-          }}
-        /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
