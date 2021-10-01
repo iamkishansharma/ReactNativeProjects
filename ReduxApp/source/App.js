@@ -9,7 +9,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 /// IMPORTANT FOR REDUX
 import {Provider} from 'react-redux';
-import store from '../source/store/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from '../source/store/store';
 // Screens
 import Home from '../source/screens/Home';
 import Add from '../source/screens/Add';
@@ -25,37 +26,38 @@ import {
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar backgroundColor={STATUSBAR_COLOR} barStyle="dark-content" />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              headerStyle: {backgroundColor: HEADER_BG_COLOR},
-              title: 'YOUR NOTES',
-              headerTitleStyle: {
-                fontSize: 22,
-              },
-              headerTintColor: HEADER_TITLE_COLOR,
-              headerTitleAlign: 'center',
-            }}
-          />
+      <PersistGate persistor={persistor}>
+        <StatusBar backgroundColor={STATUSBAR_COLOR} barStyle="dark-content" />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{
+                headerStyle: {backgroundColor: HEADER_BG_COLOR},
+                title: 'YOUR NOTES',
+                headerTitleStyle: {
+                  fontSize: 22,
+                },
+                headerTintColor: HEADER_TITLE_COLOR,
+                headerTitleAlign: 'center',
+              }}
+            />
 
-          <Stack.Screen
-            name="Add"
-            component={Add}
-            options={{
-              headerStyle: {backgroundColor: HEADER_BG_COLOR},
-              title: 'ADD NOTE',
-              headerTitleStyle: {
-                fontSize:22
-              },
-              headerTitleAlign: 'center',
-              headerTintColor: HEADER_TITLE_COLOR,
-            }}
-          />
-          {/* 
+            <Stack.Screen
+              name="Add"
+              component={Add}
+              options={{
+                headerStyle: {backgroundColor: HEADER_BG_COLOR},
+                title: 'ADD NOTE',
+                headerTitleStyle: {
+                  fontSize: 22,
+                },
+                headerTitleAlign: 'center',
+                headerTintColor: HEADER_TITLE_COLOR,
+              }}
+            />
+            {/* 
         <Stack.Screen
           name="Edit"
           component={Edit}
@@ -69,8 +71,9 @@ const App = () => {
             headerTintColor: '#fff',
           }}
         /> */}
-        </Stack.Navigator>
-      </NavigationContainer>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };

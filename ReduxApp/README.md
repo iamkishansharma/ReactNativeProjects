@@ -1,3 +1,8 @@
+## Redux Note App:
+
+- [x] AsyncStorage & redux-persist
+- [x] Saving nots inside local storage
+
 ## Used Packeges:
 
     "@react-native-async-storage/async-storage": "^1.15.8",

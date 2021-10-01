@@ -1,6 +1,4 @@
 import {ADD_NOTE, DELETE_NOTE, MARK_COMPLETED} from '../action/action.types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 const initialState = [];
 
 export default (state = initialState, action) => {
