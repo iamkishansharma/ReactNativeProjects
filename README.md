@@ -1,5 +1,5 @@
 # React Native Projects
-
+## Projects list
 <h3>
 <ol>
  <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/BgChanger">Background Changer App</a></li>
@@ -12,6 +12,7 @@
 <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/UsersAPI">UserApi (Handling API request)</a></li>
 <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/GitUsersHub">GitHub Search</a></li>
 <li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/ReduxApp">REDUX Note App</a></li>
+<li><a href="https://github.com/iamkishansharma/ReactNativeProjects/tree/main/Instagram">Instagram clone App</a></li>
 </ol>
 </h3>
 
@@ -27,7 +28,7 @@
 ## ---------- October 2021 ------------
 |Sun|Mon|Tue|Wed|Thu|Fri|Sat|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-||||||<ul><li>- [x] 1</li></ul>|2|
+||||||<ul><li>- [x] 1</li></ul>|<ul><li>- [x] 1</li></ul>|
 |3|4|5|6|7|8|9|
 |10|11|12|13|14|15|16|
 |17|18|19|20|21|22|23|
