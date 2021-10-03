@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {winWidth, winHeight} from '../../Constants';
+import {winWidth, winHeight} from '../utils/Constants';
 
 const Button = ({buttonTitle, ...rest}) => {
   return (

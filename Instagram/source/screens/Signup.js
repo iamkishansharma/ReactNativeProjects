@@ -105,6 +105,7 @@ const Signup = () => {
 };
 
 export default Signup;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

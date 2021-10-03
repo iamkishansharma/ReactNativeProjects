@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, SafeAreaView} from 'react-native';
-import {winWidth, winHeight} from '../../Constants';
+import {winWidth, winHeight} from '../utils/Constants';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 

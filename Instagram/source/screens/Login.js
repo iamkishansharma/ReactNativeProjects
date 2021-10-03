@@ -10,10 +10,11 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import {winHeight} from '../../Constants';
+import {winHeight} from '../utils/Constants';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import SocialIcon from '../components/SocialIcon';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
