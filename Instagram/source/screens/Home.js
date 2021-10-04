@@ -5,6 +5,8 @@ const Home = () => {
   return (
     <>
       <Text style={styles.header}>Home</Text>
+      <Text style={styles.header}>Home</Text>
+      <Text style={styles.header}>Home</Text>
     </>
   );
 };

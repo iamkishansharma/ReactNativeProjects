@@ -1,46 +1,55 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Header} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Feather';
 
 // React-redux hooks
 import {useDispatch, connect} from 'react-redux';
 
 import propTypes from 'prop-types';
-import {signIn, signOut} from '../redux/action/auth';
+import {signOut} from '../redux/action/auth';
+import {winHeight, winWidth} from '../utils/Constants';
 
 const CustomHeader = ({signOut, authState, navigation}) => {
   return (
-    <Header
-      placement="left"
-      leftComponent={
-        <TouchableOpacity>
-          <Icon name="home" color="white" />
-        </TouchableOpacity>
-      }
-      centerComponent={{text: 'Instagram', style: {color: '#fff'}}}
-      rightComponent={
-        authState.isAuthenticated && (
-          <View style={{flexDirection: 'row'}}>
+    authState.isAuthenticated && (
+      <Header
+        backgroundColor="white"
+        elevated
+        placement="left"
+        // centerComponent={{text: 'Instagram', style: {color: '#fff',fontSize:22}}}
+        centerComponent={
+          <Image
+            style={{width: 200, height: 10}}
+            source={require('../../assets/insta_text.png')}
+            width={winWidth / 3}
+            height={winHeight / 20}
+          />
+        }
+        rightComponent={
+          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
             <TouchableOpacity
-              style={{marginHorizontal: 5, backgroundColor: 'green'}}
+              style={{
+                marginHorizontal: 10,
+                alignItems: 'center',
+              }}
               onPress={() => {
                 navigation.navigate('AddPost');
               }}>
-              <Text style={{fontSize: 25, fontWeight: 'bold'}}>Add Post</Text>
+              <Icon name="edit" size={40} color="blue" />
             </TouchableOpacity>
             <TouchableOpacity
-              style={{marginHorizontal: 5, backgroundColor: 'red'}}
+              style={{marginHorizontal: 5, alignItems: 'center'}}
               onPress={() => {
                 /// Log OUT HERE
                 signOut();
               }}>
-              <Icon name="closecircleo" color="white" />
+              <Icon name="log-out" size={40} color="red" />
             </TouchableOpacity>
           </View>
-        )
-      }
-    />
+        }
+      />
+    )
   );
 };
 // Redux
@@ -58,7 +67,7 @@ CustomHeader.proptypes = {
 };
 
 // REDUX style export
-export default connect(mapDispatchToProps, mapDispatchToProps)(CustomHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomHeader);
 const styles = StyleSheet.create({
   header: {
     fontWeight: 'bold',

@@ -75,9 +75,7 @@ const App = ({authState}) => {
       <StatusBar backgroundColor="#ff9999" barStyle="dark-content" />
       <Stack.Navigator
         screenOptions={{
-          header: props => {
-            <CustomHeader {...props} />;
-          },
+          header: props => <CustomHeader {...props} />,
         }}>
         {authState.isAuthenticated ? (
           <>
@@ -109,8 +107,8 @@ const App = ({authState}) => {
   );
 };
 
-const mapStateToProps = state => {
-  authState: state.auth;
-};
+const mapStateToProps = state => ({
+  authState: state.auth,
+});
 
 export default connect(mapStateToProps)(App);

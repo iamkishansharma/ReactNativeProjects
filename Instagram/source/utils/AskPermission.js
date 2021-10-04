@@ -6,7 +6,12 @@ export const requestPermission = async () => {
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
     ]);
 
-    console.log('Permission done...\n' + granted);
+    if (
+      !granted['android.permission.READ_EXTERNAL_STORAGE'] === 'denied' &&
+      !granted['android.permission.WRITE_EXTERNAL_STORAGE'] === 'denied'
+    ) {
+      console.log('Permission Given .....' + granted);
+    }
 
     if (
       granted['android.permission.READ_EXTERNAL_STORAGE'] === 'denied' ||

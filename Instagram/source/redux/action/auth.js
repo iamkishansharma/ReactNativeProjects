@@ -24,7 +24,7 @@ export const signUp = data => async dispatch => {
           bio,
         })
         .then(res => {
-          console.log('Data added successfully...' + res);
+          console.log('Data added successfully...\\n' + res);
           Snackbar.show({
             text: 'Data added successfully !',
             textColor: 'white',
@@ -33,9 +33,10 @@ export const signUp = data => async dispatch => {
         });
     })
     .catch(error => {
-      console.log('Signup error... ' + error);
+      console.log('Signup error... ' + error.message);
       Snackbar.show({
-        text: 'Sign up failed !',
+        duration: Snackbar.LENGTH_LONG,
+        text: error.message,
         textColor: 'white',
         backgroundColor: 'red',
       });
@@ -47,25 +48,35 @@ export const signIn = data => async dispatch => {
 
   const {email, password} = data;
 
-  auth()
-    .signInWithEmailAndPassword(email.password)
-    .then(response => {
-      //
-      console.log('Sign in successful.....\n' + response);
-      Snackbar.show({
-        text: 'Sign in successful.',
-        textColor: 'white',
-        backgroundColor: 'geen',
+  if (email.length >= 5 && password.length >= 1) {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(response => {
+        //
+        console.log('Sign in successful.....\n' + response);
+        Snackbar.show({
+          text: 'Sign in successful.',
+          textColor: 'white',
+          backgroundColor: 'green',
+        });
+      })
+      .catch(error => {
+        console.log('Sign in failed....' + error.message);
+        Snackbar.show({
+          duration: Snackbar.LENGTH_LONG,
+          text: error.message,
+          textColor: 'white',
+          backgroundColor: 'red',
+        });
       });
-    })
-    .catch(error => {
-      console.log('Sign in failed....' + error);
-      Snackbar.show({
-        text: 'Sign in failed !',
-        textColor: 'white',
-        backgroundColor: 'red',
-      });
+  } else {
+    Snackbar.show({
+      text: '🤷‍♂️ Invalid email or password. Please check your inputs.',
+      textColor: 'white',
+      backgroundColor: 'red',
+      duration: Snackbar.LENGTH_LONG,
     });
+  }
 };
 
 export const signOut = () => async dispatch => {
@@ -75,7 +86,7 @@ export const signOut = () => async dispatch => {
       console.log('Sign out successful....\n' + res);
 
       Snackbar.show({
-        text: 'Signed out successful.',
+        text: 'Sign out successful.',
         textColor: 'white',
         backgroundColor: 'green',
       });
@@ -83,7 +94,7 @@ export const signOut = () => async dispatch => {
     .catch(error => {
       console.log('Sign out failed....' + error);
       Snackbar.show({
-        text: 'Sign out failed !',
+        text: error.message,
         textColor: 'white',
         backgroundColor: 'red',
       });

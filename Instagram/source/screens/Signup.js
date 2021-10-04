@@ -5,7 +5,6 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  StatusBar,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
@@ -13,7 +12,89 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import SocialIcon from '../components/SocialIcon';
 
-const Signup = () => {
+import ProgressBar from 'react-native-progress';
+import * as ImagePicker from 'react-native-image-picker';
+import {options} from '../utils/options';
+
+// Firebase
+import database from '@react-native-firebase/database';
+import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth';
+
+// React-redux hooks
+import {connect} from 'react-redux';
+import propTypes from 'prop-types';
+import {signUp} from '../redux/action/auth';
+import Snackbar from 'react-native-snackbar';
+
+const Signup = ({signUp}) => {
+  const [userName, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [country, setCountry] = useState('');
+  const [bio, setBio] = useState('');
+  const [image, setImage] = useState(
+    'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+  );
+
+  const [imageUploading, setImageUploading] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState(null);
+
+  const chooseImage = async () => {
+    ///CE22484879
+    ImagePicker.launchImageLibrary(options, response => {
+      console.log('Image picker response.....' + response);
+      if (response.didCancel) {
+        console.log('User cancled ImagePicker..>' + response);
+      } else {
+        console.log('ImagePicker Not error.....' + response);
+        uploadImage(response);
+      }
+    });
+  };
+
+  const uploadImage = async response => {
+    // get image path from response
+    setImageUploading(true);
+    const userId = auth().currentUser().uid;
+    const storageRefrence = storage().ref(`/users/${userId}`);
+
+    const task = storageRefrence.putFile(response.assets[0].uri);
+    task.on('state_changed', taskSnapshot => {
+      const percentage =
+        (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 1000;
+      // setting upload status
+      setUploadStatus(percentage);
+    });
+
+    task.then(async () => {
+      const url = await storageRefrence.getDownloadURL();
+      setImage(url);
+      setImageUploading(false);
+    });
+  };
+  const doSignUp = async () => {
+    //
+    if (
+      userName.trim() !== null &&
+      email.trim() !== null &&
+      name.trim() !== null &&
+      country.trim() !== null &&
+      image.trim() !== null &&
+      bio.trim() !== null
+    ) {
+      signUp({image, userName, name, password, email, country, bio});
+    } else {
+      Snackbar.show({
+        text: ' Signup failed!, Please check your inputs.',
+        textColor: 'white',
+        backgroundColor: 'red',
+        duration: Snackbar.LENGTH_LONG,
+      });
+    }
+  };
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -32,17 +113,23 @@ const Signup = () => {
           justifyContent: 'center',
           borderRadius: 100,
           borderWidth: 5,
-        }}>
-        {/* <Avatar size={130} source={require('../../assets/insta_logo.png')} /> */}
-        <Icon name="wallpaper" color="white" size={60} />
-        <Text> Upload you picture</Text>
+        }}
+        onPress={chooseImage}>
+        <Avatar size={130} source={{uri: image}} />
+        {/* <Icon name="wallpaper" color="white" size={60} /> */}
       </TouchableOpacity>
+
+      {imageUploading && (
+        <ProgressBar progress={uploadStatus} style={styles.progress} />
+      )}
       <Input
         placeholderText="Username"
         iconName="form"
         keyboardType="default"
         autoCapitalize="none"
         autoCorrect={false}
+        value={userName}
+        onChangeText={text => setUsername(text)}
       />
       <Input
         placeholderText="Full Name"
@@ -50,6 +137,8 @@ const Signup = () => {
         keyboardType="default"
         autoCapitaliz="words"
         autoCorrect={false}
+        value={name}
+        onChangeText={text => setName(text)}
       />
       <Input
         placeholderText="Email"
@@ -57,11 +146,15 @@ const Signup = () => {
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
       <Input
         placeholderText="Password"
         iconName="lock"
         secureTextEntry={true}
+        value={password}
+        onChangeText={text => setPassword(text)}
       />
       <Input
         placeholderText="Country"
@@ -69,6 +162,8 @@ const Signup = () => {
         keyboardType="default"
         autoCapitalize="words"
         autoCorrect={false}
+        value={country}
+        onChangeText={text => setCountry(text)}
       />
       <Input
         placeholderText="Bio"
@@ -77,14 +172,17 @@ const Signup = () => {
         noOfLines={5}
         autoCapitalize="sentences"
         autoCorrect={false}
+        value={bio}
+        onChangeText={text => setBio(text)}
       />
-      <Button buttonTitle="Sign up" />
+      <Button buttonTitle="Sign up" onPress={doSignUp} />
+
       <TouchableOpacity></TouchableOpacity>
       <View style={{flexDirection: 'row', marginVertical: 30}}>
         <Text style={[styles.forgotPws, {color: 'black', padding: 5}]}>
           Already have an account?{' '}
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigator.navigate('Login')}>
           <Text
             style={[
               styles.forgotPws,
@@ -103,8 +201,18 @@ const Signup = () => {
     </ScrollView>
   );
 };
+// Redux setup
 
-export default Signup;
+const mapDispatchToProps = {
+  signUp: data => signUp(data),
+};
+
+Signup.proptypes = {
+  signUp: propTypes.func.isRequired,
+};
+
+// Redux style export
+export default connect(null, mapDispatchToProps)(Signup);
 
 const styles = StyleSheet.create({
   container: {
@@ -121,5 +229,9 @@ const styles = StyleSheet.create({
   },
   forgotPws: {
     fontSize: 16,
+  },
+  progress: {width: null, marginBottom: 20},
+  formItem: {
+    marginBottom: 20,
   },
 });
