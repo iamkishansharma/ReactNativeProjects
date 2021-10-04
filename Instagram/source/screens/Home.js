@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet,Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
-const AddPost = () => {
+const Home = () => {
   return (
     <>
       <Text style={styles.header}>Home</Text>
