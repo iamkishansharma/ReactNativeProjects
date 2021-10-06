@@ -4,9 +4,23 @@ import {winWidth, winHeight} from '../utils/Constants';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const Input = ({labelValue, placeholderText, iconName, noOfLines, ...rest}) => {
+const Input = ({
+  labelValue,
+  placeholderText,
+  enableHeight,
+  inputHeight,
+  iconName,
+  noOfLines,
+  ...rest
+}) => {
   return (
-    <View style={styles.inputContainer}>
+    <View
+      style={[
+        styles.inputContainer,
+        {
+          height: enableHeight ? inputHeight : winHeight / 15,
+        },
+      ]}>
       <View style={styles.iconStyle}>
         <AntDesign name={iconName} size={25} color="#999" />
       </View>
@@ -30,7 +44,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 8,
     width: '100%',
-    height: winHeight / 15,
     borderColor: '#ccc',
     borderWidth: 1,
     flexDirection: 'row',

@@ -27,7 +27,7 @@ const Login = ({navigation, signIn}) => {
   const [password, setPassword] = useState('');
 
   const doSignIn = () => {
-    if (email.trim().length == 0 || email.trim().length == 0) {
+    if (email.trim().length == 0 || email.trim().length == 0 || email.trim() == null || password.trim() == null) {
       console.log('LOGIN: Please check inputs');
       Snackbar.show({
         text: '🤷‍♂️ Invalid email or password. Please check your inputs.',
@@ -83,7 +83,7 @@ const Login = ({navigation, signIn}) => {
           Snackbar.show({
             text: 'COMING SOON...',
             textColor: 'white',
-            backgroundColor:'purple',
+            backgroundColor: 'purple',
             duration: Snackbar.LENGTH_LONG,
           });
         }}>
@@ -93,7 +93,7 @@ const Login = ({navigation, signIn}) => {
         <Text style={[styles.forgotPws, {color: 'black', padding: 5}]}>
           Don't have an account?{' '}
         </Text>
-        <TouchableOpacity onPress={() => navigator.navigate('Signup')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
           <Text
             style={[
               styles.forgotPws,

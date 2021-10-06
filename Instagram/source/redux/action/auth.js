@@ -48,7 +48,7 @@ export const signIn = data => async dispatch => {
 
   const {email, password} = data;
 
-  if (email.length >= 5 && password.length >= 1) {
+  if (email.length >= 5 && password.length >= 5) {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(response => {

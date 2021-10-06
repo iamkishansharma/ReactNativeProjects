@@ -2,9 +2,14 @@ import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {winWidth, winHeight} from '../utils/Constants';
 
-const Button = ({buttonTitle, ...rest}) => {
+const Button = ({buttonTitle, enableColor, bgColor, ...rest}) => {
   return (
-    <TouchableOpacity style={styles.buttonContainer} {...rest}>
+    <TouchableOpacity
+      style={[
+        styles.buttonContainer,
+        {backgroundColor: enableColor ? bgColor : '#2e64e5'},
+      ]}
+      {...rest}>
       <Text style={styles.buttonText}>{buttonTitle}</Text>
     </TouchableOpacity>
   );
@@ -19,7 +24,6 @@ const styles = StyleSheet.create({
     shadowColor: 'blue',
     width: '100%',
     height: winHeight / 15,
-    backgroundColor: '#2e64e5',
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
