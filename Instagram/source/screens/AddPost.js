@@ -87,9 +87,11 @@ const AddPost = ({navigation, userState}) => {
         description: description,
         picture: image,
         by: userState.name,
+        likes: 0,
         date: Date.now,
         instaId: userState.userName,
         userImage: userState.image,
+        uid: uuid,
       });
       console.log('Post added....');
       navigation.navigate('Home');
@@ -181,7 +183,7 @@ const mapStateToProps = state => ({
   userState: state.auth.user,
 });
 
-AddPost.propTypes = {
+AddPost.proptypes = {
   userState: propTypes.object.isRequired,
 };
 

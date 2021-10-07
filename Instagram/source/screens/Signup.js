@@ -17,7 +17,6 @@ import {options} from '../utils/options';
 
 // Firebase
 import storage from '@react-native-firebase/storage';
-import auth from '@react-native-firebase/auth';
 
 // React-redux hooks
 import {connect} from 'react-redux';
@@ -57,8 +56,7 @@ const Signup = ({navigation, signUp}) => {
     console.log('Image upload called....');
     // get image path from response
     setImageUploading(true);
-    const userId = auth().currentUser().uid;
-    const storageRefrence = storage().ref(`/users/${userId}/profile`);
+    const storageRefrence = storage().ref(`/users/${userName}/profile`);
 
     const task = storageRefrence.putFile(response.assets[0].uri);
     task.on('state_changed', taskSnapshot => {
@@ -117,7 +115,12 @@ const Signup = ({navigation, signUp}) => {
               source={{uri: image}}
               width={1}
               height={1}
-              style={{height: '100%', width: '100%', margin: 5}}
+              style={{
+                height: '100%',
+                width: '100%',
+                borderRadius: 100,
+                margin: 5,
+              }}
             />
           </TouchableOpacity>
         </>
