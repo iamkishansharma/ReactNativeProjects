@@ -16,6 +16,11 @@
     <tr>
 </table>
 
+## Used tech:
+
+<a href="#"><img  width="150" height="80" src="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-built_white.png" alt="firebase" /></a>
+<a href="#"><img  width="150" height="80" src="https://www.pngkit.com/png/full/222-2224799_react-native-development-react-native-logo-png.png" alt="firebase" /></a>
+
 ## How to run:
 Note: Make sure you have node and react installed.
 1. Clone the repo:
