@@ -76,12 +76,11 @@ export const ListItem = ({scale, user, color}) => (
         <Text style={{color: LIST_TEXT_COLOR}}>Action: {user.type}</Text>
         <Text style={{color: LIST_TEXT_COLOR}}>
           SHA :
-          {user.payload.ref !== null ||
-          user.payload.commits !== null &&
-          user.payload.commits.length !== 0 ||
+          {!user.payload.ref ||
+          !user.payload.commits ||
           user.payload.ref !== 'main'
-            ? user.payload.commits.map(a => a.sha.substring(0, 7))
-            : user.payload.description}
+            ? user.payload.description
+            : user.payload.commits.map(a => a.sha.substring(0, 7))}
         </Text>
         <Text style={{color: LIST_TEXT_COLOR}}>
           User: @{user.actor.display_login}
