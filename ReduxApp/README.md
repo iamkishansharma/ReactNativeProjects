@@ -1,29 +1,44 @@
 ## Redux Note App:
 
-- [x] AsyncStorage & redux-persist
-- [x] Saving notes inside local storage
+## Screenshots:
+<table style="width:100%; align:center;" >
+  <tr>
+    <th>All Notes</th>
+    <th>Add Note</th>
+  </tr>
+  <tr>
+    <td><img alt="home" src="https://raw.githubusercontent.com/iamkishansharma/my-project-screenshots/main/ReactNativeProjects/Redux-%20Note%20App/redux_home.jpg" width="250px"/></td>
+    <td><img alt="add" src="https://raw.githubusercontent.com/iamkishansharma/my-project-screenshots/main/ReactNativeProjects/Redux-%20Note%20App/redux_addnote.jpg" width="250px"/></td>
+    <tr>
+</table>
 
-## Used Packeges:
+## Used tech:
 
-"@react-native-async-storage/async-storage": "^1.15.8",
-"@react-native-community/masked-view": "^0.1.11",
-"@react-navigation/native": "^6.0.2",
-"@react-navigation/native-stack": "^6.1.0",
-"@react-navigation/stack": "^6.0.7",
-"prop-types": "^15.7.2",
-"randomcolor": "^0.6.2",
-"react": "17.0.2",
-"react-native": "0.65.1",
-"react-native-elements": "^3.4.2",
-"react-native-gesture-handler": "^1.10.3",
-"react-native-reanimated": "^2.2.2",
-"react-native-safe-area-context": "^3.3.2",
-"react-native-screens": "^3.7.2",
-"react-native-snackbar": "^2.4.0",
-"react-native-vector-icons": "^8.1.0",
-"react-redux": "^7.2.5",
-"redux": "^4.1.1",
-"redux-devtools-extension": "^2.13.9",
-"redux-persist": "^6.0.0",
-"redux-thunk": "^2.3.0",
-"shortid": "^2.2.16"
+<a href="#"><img  width="300" height="170" src="https://www.pngkit.com/png/full/222-2224799_react-native-development-react-native-logo-png.png" alt="reactnative" /></a>
+- [x] <a href="https://github.com/react-native-async-storage/async-storage">Async Storage</a> & <a href="https://github.com/rt2zz/redux-persist">Redux Persist</a>
+
+## How to run:
+Note: Make sure you have node and react installed.
+1. Clone the repo:
+```
+git clone https://github.com/iamkishansharma/ReactNativeProjects/
+```
+2. Get inside any of the projects:
+```
+cd ReduxApp/
+```
+3. Install all the packages:
+```
+npm install
+```
+4. Start the metro builder for hot-reload:
+```
+npx react-native start
+```
+5. Run on devices:
+```
+npx react-native run-android
+```
+```
+npx react-native run-ios
+```
