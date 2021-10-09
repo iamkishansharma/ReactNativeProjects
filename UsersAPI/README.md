@@ -1,4 +1,4 @@
-# UsersAPI App fir API Handling in RN 
+# UsersAPI App for API Handling in RN 
 
 ## Screenshots:
 <table style="width:100%; align:center;" >
