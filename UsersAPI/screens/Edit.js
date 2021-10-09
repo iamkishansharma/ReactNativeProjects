@@ -6,7 +6,6 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
-  Image,
   TouchableOpacity,
 } from 'react-native';
 import Constants from '../Constants';
@@ -121,12 +120,6 @@ const Edit = ({navigation, route}) => {
             justifyContent: 'center',
           }}>
           <View style={styles.buttonSave}>
-            {/* <Icon
-              style={{marginRight: 5}}
-              name="check"
-              size={30}
-              color="blue"
-            /> */}
             <Text style={{fontWeight: 'bold', color: 'white', fontSize: 20}}>
               Save
             </Text>

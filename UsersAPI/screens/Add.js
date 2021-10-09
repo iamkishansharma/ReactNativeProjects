@@ -7,12 +7,10 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Constants from '../Constants';
 import randomColor from 'randomcolor';
-import {Card} from 'react-native-elements';
 let COLOR = randomColor({luminosity: 'light', hue: 'purple'});
 
 const Add = ({navigation, route}) => {

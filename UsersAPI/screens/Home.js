@@ -104,8 +104,7 @@ const Home = ({navigation, route}) => {
             justifyContent: 'center',
           }}
           onPress={() => {
-            // CLICKING ON A
-            // navigation.navigate('Edit', {user, color});
+            // Click on Avatar
           }}>
           <Avatar
             icon={{name: 'person'}}
@@ -120,7 +119,7 @@ const Home = ({navigation, route}) => {
 
         <TouchableOpacity
           onLongPress={() => {
-            //TODO::Do Nothing
+            // Navigate to Edit screen
             navigation.navigate('Edit', {user, color});
           }}
           style={{
@@ -182,8 +181,8 @@ const Home = ({navigation, route}) => {
         </View>
       )}
       <FAB
-      title="Create"
-      titleStyle={{color:'black'}}
+        title="Create"
+        titleStyle={{color: 'black'}}
         onPress={() => {
           navigation.navigate('Add');
         }}

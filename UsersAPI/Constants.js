@@ -40,7 +40,6 @@ export default class Constants extends Component {
           backgroundColor: '#ff6363',
           textColor: 'black',
         });
-        break;
     }
   }
 }
