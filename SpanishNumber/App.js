@@ -39,7 +39,8 @@ const App = () => {
 
     setTimeout(() => {
       soundVar.play();
-    }, 200);
+      console.log('Played...');
+    }, 700);
 
     soundVar.release();
   };
@@ -90,7 +91,6 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'red',
-    // backgroundColor: 'black',
     flex: 1,
     padding: 10,
   },
